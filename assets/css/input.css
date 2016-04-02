@@ -1,0 +1,14 @@
+.acf-field-mapmore-row {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	clear: both;
+}
+.acf-field-mapmore-controls {
+	width: 25%;
+	float: left;
+}
+.acf-field-mapmore-content {
+	width: 75%;
+	float: left;
+}

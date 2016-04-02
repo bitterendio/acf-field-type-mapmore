@@ -1,0 +1,26 @@
+{
+  "name": "sanatorium/acf-field-type-mapmore",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "description": "Advanced Custom Fields - MapMore",
+  "homepage": "https://sanatorium.ninja",
+  "authors": [
+    {
+      "name": "rozklad",
+      "email": "jan.rozklad@gmail.com",
+      "homepage": "https://rozklad.me"
+    },
+    {
+      "name": "mattluk",
+      "email": "matejlukas12@gmail.com"
+    }
+  ],
+  "keywords": [
+    "wordpress",
+    "acf"
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "composer/installers": "~1.0"
+  }
+}
