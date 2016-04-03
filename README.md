@@ -1,6 +1,6 @@
 # ACF MapMore Field
 
-Map complex field for Advanced Custom Fields.
+Complex map field for Advanced Custom Fields.
 
 ![Preview Field in Wordpress admin](https://raw.githubusercontent.com/sanatorium/acf-field-type-mapmore/master/screenshot.png)
 
