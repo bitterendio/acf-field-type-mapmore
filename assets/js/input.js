@@ -104,6 +104,8 @@
 				defaultStrokeWeight: 	2,
 				defaultFillColor: 		'#FF0000',
 				defaultFillOpacity: 	0.35,
+				markerOptions: 			[],
+				defaultMarker: 			null,
 			};
 
 		// The actual plugin constructor
@@ -128,8 +130,26 @@
 
 				this.setLocations();
 
+				this.activateIconSelect();
+
 				if ( this.settings.drawingManager && this.settings.editable )
 					this.setDrawingManager();
+
+			},
+
+			activateIconSelect: function() {
+
+				var self = this;
+
+				$('[data-acf-field-mapmore-icon]').click(function(){
+
+					$('[data-acf-field-mapmore-icon]').removeClass('active');
+
+					$(this).addClass('active');
+
+					self.settings.defaultMarker = $(this).data('acf-field-mapmore-icon');
+
+				});
 
 			},
 
@@ -252,6 +272,19 @@
 						break;
 
 						case google.maps.drawing.OverlayType.MARKER:
+							/*
+							
+							@wip
+							if ( self.settings.defaultMarker !== null ) {
+
+								var icon = {
+							        url: self.settings.defaultMarker,
+							        anchor: new google.maps.Point(25,50),
+							        scaledSize: new google.maps.Size(50,50)
+							    };
+
+							}
+							*/
 
 							var locationObject = {
 						        	lat: 				event.overlay.position.lat(),
@@ -460,17 +493,26 @@
 
 						case 'marker':
 
+
 							var markerLatLng = {
 								lat: location.lat, 
 								lng: location.lng
 							};
 
-							var mapObject = new google.maps.Marker({
+							var mapObjectConfig = {
 								position: 	markerLatLng,
 								map: 		self.map,
 								draggable: 	self.settings.draggable,
     							animation: 	google.maps.Animation.DROP
-							});
+							};
+
+							if ( icon !== false ) {
+
+								mapObjectConfig['icon'] = icon;
+
+							}
+
+							var mapObject = new google.maps.Marker(mapObjectConfig);
 
 							self.mapObjects.push(mapObject);
 

@@ -9,6 +9,46 @@
 	float: left;
 }
 
+/**
+ * Icon select
+ */
+.acf-field-mapmore-icon-select {
+	float: left;
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	display: block;
+	text-align: center;
+	box-shadow: none!important;
+	position: relative;
+}
+
+.acf-field-mapmore-icon-select {
+	opacity: 0.4;
+}
+
+.acf-field-mapmore-icon-select:hover,
+.acf-field-mapmore-icon-select.active {
+	opacity: 1;
+}
+
+.acf-field-mapmore-icon-select.active:after {
+	position: absolute;
+	content: " ";
+	display: block;
+	right: 10px;
+	top: 10px;
+	border-radius: 50%;
+	background-color: #00a0d2;
+	width: 8px;
+	height: 8px;
+}
+
+.acf-field-mapmore-icon-select img {
+	width: 60%;
+	height: auto;
+	vertical-align: middle;
+}
 
 /**
  * Context menu

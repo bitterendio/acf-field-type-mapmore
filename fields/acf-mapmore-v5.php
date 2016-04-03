@@ -232,6 +232,45 @@ class acf_field_mapmore extends acf_field {
 		<?php
 
 		/*
+	    * Marker icons
+		*/
+		
+		$icons = $this->get_icons();
+
+		if ( is_array($icons) ) : 
+		
+			$icons_count = count($icons);
+
+		?>
+
+			<div class="acf-field-mapmore-row">
+
+		<?php
+
+			foreach( $icons as $icon ) :
+
+				?>
+				
+				<a href="#" class="acf-field-mapmore-icon-select" data-acf-field-mapmore-icon="<?= $icon ?>">
+					
+					<img src="<?= $icon ?>" alt="Marker icon" width="48" height="48">
+
+				</a>
+
+				<?php
+
+			endforeach;
+
+			?>
+
+			</div>
+
+			<?php
+
+		endif;
+
+
+		/*
 		*  Review the data of $field.
 		*  This will show what data is available
 		*/
@@ -240,6 +279,50 @@ class acf_field_mapmore extends acf_field {
 			print_r( $field );
 		echo '</pre>';
 		*/
+	}
+
+	function get_icons() {
+
+		// Prepare icons array
+		$icons = [];
+
+		// Define directory where icons are stored
+		$dir = __DIR__ . '/../assets/images/icons/';
+
+		// If directory does not exist, return empty result
+		if ( !file_exists($dir) )
+			return $icons;
+
+		$files = scandir($dir);
+		
+		// If no file is found, return empty result
+		if ( !is_array($files) )
+			return $icons;
+
+		foreach( $files as $file ) {
+
+			$filepath = $dir . $file;
+
+			$ext = pathinfo($filepath, PATHINFO_EXTENSION);
+
+			switch ( $ext ) {
+
+				case 'svg':
+					
+					$icons[] = plugins_url( 'assets/images/icons/'.$file, dirname(__FILE__) );
+
+				break;
+
+				default:
+					// @todo - support png
+				break;
+
+			}
+
+		}
+
+		return $icons;
+
 	}
 	
 		

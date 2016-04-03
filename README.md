@@ -14,6 +14,8 @@ Complex map field for Advanced Custom Fields.
 
 ## Usage
 
+### Displaying selected location
+
 
 	$value = get_field('mapmore_field');
 
@@ -79,6 +81,11 @@ Complex map field for Advanced Custom Fields.
   	}
 
 
+### Adding marker icons
+
+Add any *.svg files to ``images/icons`` they will be automatically available as Marker icons
+
+
 -----------------------
 
 ### Description
@@ -100,3 +107,13 @@ This ACF field type is compatible with:
 
 ### Changelog
 Please see `readme.txt` for changelog
+
+### Credits
+
+#### Icons
+
+- Map Marker, Pin, thumb tack, Flag, Tree, forest, Flower, Sun, Crescent Moon, Tornado, Hail, Lightning, Day Fog, Bicycle, Car, Bus, Train, Hot Air Balloon, Departure, Airplane Mode, Tent, Image, Color, Shop, Hanging board by (Pham Thi Dieu Linh)[https://thenounproject.com/phdieuli/] from (the Noun Project)[https://thenounproject.com]
+
+
+
+
