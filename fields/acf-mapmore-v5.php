@@ -52,7 +52,17 @@ class acf_field_mapmore extends acf_field {
 		*/
 		
 		$this->defaults = array(
-			'font_size'	=> 14,
+			'height'		=> '',
+			'center_lat'	=> '',
+			'center_lng'	=> '',
+			'zoom'			=> ''
+		);
+
+		$this->default_values = array(
+			'height'		=> '400',
+			'center_lat'	=> '50.0665797',
+			'center_lng'	=> '13.794696',
+			'zoom'			=> '4'
 		);
 		
 		
@@ -96,13 +106,48 @@ class acf_field_mapmore extends acf_field {
 		*  More than one setting can be added by copy/paste the above code.
 		*  Please note that you must also have a matching $defaults value for the field name (font_size)
 		*/
-		
+	
+		// height
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Size','acf-mapmore'),
-			'instructions'	=> __('Customise the input font size','acf-mapmore'),
-			'type'			=> 'number',
-			'name'			=> 'font_size',
-			'prepend'		=> 'px',
+			'label'			=> __('Height','acf-mapmore'),
+			'instructions'	=> __('Customise the map height','acf-mapmore'),
+			'type'			=> 'text',
+			'name'			=> 'height',
+			'append'		=> 'px',
+			'placeholder'	=> $this->default_values['height']
+		));
+
+		// center_lat
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Center','acf-mapmore'),
+			'instructions'	=> __('Center the initial map','acf-mapmore'),
+			'type'			=> 'text',
+			'name'			=> 'center_lat',
+			'prepend'		=> 'lat',
+			'placeholder'	=> $this->default_values['center_lat']
+		));
+		
+		
+		// center_lng
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Center','acf-mapmore'),
+			'instructions'	=> __('Center the initial map','acf-mapmore'),
+			'type'			=> 'text',
+			'name'			=> 'center_lng',
+			'prepend'		=> 'lng',
+			'placeholder'	=> $this->default_values['center_lng'],
+			'wrapper'		=> array(
+				'data-append' => 'center_lat'
+			)
+		));
+		
+		// zoom
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Zoom','acf-mapmore'),
+			'instructions'	=> __('Set the initial zoom level','acf-mapmore'),
+			'type'			=> 'text',
+			'name'			=> 'zoom',
+			'placeholder'	=> $this->default_values['zoom']
 		));
 
 	}
@@ -126,66 +171,60 @@ class acf_field_mapmore extends acf_field {
 	
 	function render_field( $field ) {
 		
-		
 		/*
 		*  Create a map input
 		*/
 		
-		$map_id 					= 'map-' 		. esc_attr($field['key']);
-		$controls_id 				= 'controls-' 	. esc_attr($field['key']);
-		$initialize_function_name 	= 'initialize' 	. ucfirst(esc_attr($field['key']));
-		
+		$map_id 					= 'map-' 		. esc_attr($field['key']);		# Map unique identifier
+		$controls_id 				= 'controls-' 	. esc_attr($field['key']);		# Map controls unique identifier
+		$map_id_js					= esc_attr($field['key']);						# Map unique identifier used in js
+		$field_name 				= esc_attr($field['name']);
+
 		?>
-		<script>
-		var LocsAv2 = [
-		    {
-		        lat: 45.9,
-		        lon: 10.9,
-		        title: 'Zone A1',
-		        html: '<h3>Content A1</h3>',
-		        type : 'circle',
-		        circle_options: {
-		            radius: 200000
-		        },
-		        draggable: true
-		    },
-		    {
-		        lat: 44.8,
-		        lon: 1.7,
-		        title: 'Draggable',
-		        html: '<h3>Content B1</h3>',
-		        show_infowindow: false,
-		        visible: true,
-		        draggable: true
-		    },
-		    {
-		        lat: 51.5,
-		        lon: -1.1,
-		        title: 'Title C1',
-		        html: [
-		            '<h3>Content C1</h3>',
-		            '<p>Lorem Ipsum..</p>'
-		        ].join(''),
-		        zoom: 8,
-		        visible: true
-		    }
-		];
-		jQuery(function(){
-		new Maplace({
-			locations: 			LocsAv2,
-			map_div: 			'#<?= $map_id ?>',
-			controls_div: 		'#<?= $controls_id ?>',
-			controls_type: 		'list',
-			controls_on_map: 	false,
-			view_all_text: 		'Start',
-			type: 				'polyline'
-		}).Load();
+
+		<div class="acf-hidden">
+			<input type="hidden" name="<?php echo $field_name ?>" value="<?php echo esc_attr( $field['value'] ); ?>">
+		</div>
+
+		<script type="text/javascript">
+		jQuery(function($){
+
+			var locations<?= $map_id_js ?> = [];
+
+			<?php if ( !empty($field['value']) ) : ?>
+
+				<?php $current_value = json_decode($field['value']); ?>
+
+				<?php if ( json_last_error() === JSON_ERROR_NONE ) : ?>
+
+					locations<?= $map_id_js ?> = <?= $field['value'] ?>;
+
+				<?php endif; ?>
+
+			<?php endif; ?>
+
+			var map<?= $map_id_js ?> = new google.maps.Map(
+				document.getElementById('<?= $map_id ?>'), 
+				{
+					center: {
+						lat: <?= ($field['center_lat'] ?: $this->default_values['center_lat'] ) ?>, 
+						lng: <?= ($field['center_lng'] ?: $this->default_values['center_lng'] ) ?>
+					},
+					zoom: <?= ( $field['zoom'] ?: $this->default_values['zoom'] ) ?>,
+					disableDefaultUI: true
+				}
+			);
+
+			$('#<?= $map_id ?>').mapMore({
+				map: map<?= $map_id_js ?>,
+				fieldname: '<?= $field_name ?>',
+				locations: locations<?= $map_id_js ?>
+			});
+
 		});
+
 		</script>
 		<div class="acf-field-mapmore-row">
-			<div class="acf-field-mapmore-controls" id="<?= $controls_id ?>">
-
-			</div>
 			<div class="acf-field-mapmore-content">
 				<div id="<?= $map_id ?>" style="width:100%;height:400px;"></div>
 			</div>
@@ -196,11 +235,11 @@ class acf_field_mapmore extends acf_field {
 		*  Review the data of $field.
 		*  This will show what data is available
 		*/
-		
+		/*
 		echo '<pre>';
 			print_r( $field );
 		echo '</pre>';
-
+		*/
 	}
 	
 		
@@ -223,13 +262,8 @@ class acf_field_mapmore extends acf_field {
 		$dir = str_replace( 'fields/', '', plugin_dir_url( __FILE__ ) );
 	 	
 		// register & inlcude Google maps
-		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places', array(),'3', false );
+		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=drawing', array(), '3', false );
 		wp_enqueue_script('googlemaps-api');
-
-		
-		// register & include maplace
-		wp_register_script( 'acf-maplace-mapmore', "{$dir}assets/js/maplace.js", array('googlemaps-api', 'jquery'), null, false );
-		wp_enqueue_script('acf-maplace-mapmore');
 
 
 		// register & include JS

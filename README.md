@@ -10,6 +10,73 @@ Map complex field for Advanced Custom Fields.
 - Routes
 - Custom POIs
 
+## Usage
+
+
+		$value = get_field('mapmore_field');
+
+      	switch ( $value['type'] ) {
+
+      		case 'rectangle': 
+      		?>
+      		<script>	
+		      	new google.maps.Rectangle({
+		      		bounds:     <?php echo $value['bounds'] ?>,
+		      		map:        map
+		      	});
+			</script>
+      		<?php
+      		break;
+
+	      	case 'polyline':
+			?>
+			<script>	
+		      	new google.maps.Polyline({
+		      		path:       <?php echo $value['path'] ?>],
+		      		map:        map,
+		      	});
+	      	</script>
+	      	<?php
+	      	break;
+
+	      	case 'polygon':
+			?>
+			<script>	
+		      	new google.maps.Polyligon({
+		      		path:       <?php echo $value['polygon'] ?>],
+		      		map:        map
+		      	});
+	      	</script>
+	      	<?php
+	      	break;
+
+	      	case 'circle':
+			?>
+			<script>	
+		      	new google.maps.Circle({
+		      		center:     {lat: <?php echo $value['lat'] ?>], lng: <?php echo $value['lng'] ?>},
+		      		radius:     <?php echo $value['radius'] ?>,
+		      		map:        map
+		      	});
+	      	</script>
+	      	<?php
+	      	break;
+
+	      	case 'marker':
+			?>
+			<script>	
+		      	new google.maps.Marker({
+		      		position:   {lat: <?php echo $value['lat'] ?>], lng: <?php echo $value['lng'] ?>},
+		      		map:        map,
+		      		animation:  google.maps.Animation.DROP
+		      	});
+	      	</script>
+	      	<?php
+	      	break;
+
+      	}
+      
+
 -----------------------
 
 ### Description

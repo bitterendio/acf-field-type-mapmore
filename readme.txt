@@ -11,7 +11,15 @@ Map complex field for Advanced Custom Fields
 
 == Description ==
 
-EXTENDED_DESCRIPTION
+Map complex field for Advanced Custom Fields.
+
+Supports
+
+- Areas
+	- Circles
+	- Polygons
+- Routes
+- Custom POIs
 
 = Compatibility =
 
@@ -29,4 +37,4 @@ This ACF field type is compatible with:
 == Changelog ==
 
 = 0.1.0 =
-* Alpha version (work in progress).
+* Alpha (work in progress).
