@@ -86,6 +86,21 @@ Complex map field for Advanced Custom Fields.
 Add any *.svg files to ``images/icons`` they will be automatically available as Marker icons
 
 
+### Setting Google API key
+
+Add this to your theme's functions.php
+
+```
+
+function mapmore_acf_google_map_api() {
+
+	acf_append_setting('mapmore_google_api_key', 'YOUR_GOOGLE_API_KEY');
+
+}
+
+add_filter('init', 'mapmore_acf_google_map_api');
+```
+
 -----------------------
 
 ### Description

@@ -2,11 +2,11 @@
 
 /*
 Plugin Name: Advanced Custom Fields: MapMore
-Plugin URI: http://sanatorium.ninja
+Plugin URI: https://bitterend.io
 Description: Map complex field for Advanced Custom Fields
-Version: 1.0.0
-Author: Sanatorium
-Author URI: http://sanatorium.ninja
+Version: 1.0.1
+Author: bitterend
+Author URI: https://bitterend.io
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */

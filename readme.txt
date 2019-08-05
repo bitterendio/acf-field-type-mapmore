@@ -34,7 +34,12 @@ This ACF field type is compatible with:
 3. Create a new field via ACF and select the MapMore type
 4. Please refer to the description for more info regarding the field type settings
 
+
+
 == Changelog ==
+
+= 1.0.1 = (8/2019)
+* Settings Google API key
 
 = 0.1.0 =
 * Alpha (work in progress).

@@ -343,9 +343,16 @@ class acf_field_mapmore extends acf_field {
 	function input_admin_enqueue_scripts() {
 		
 		$dir = str_replace( 'fields/', '', plugin_dir_url( __FILE__ ) );
-	 	
+
+		// @hotfix: google api key
+		$key = '';
+		$keys = acf_get_setting('mapmore_google_api_key');
+	 	if (isset($keys[0])) {
+	 		$key = $keys[0];
+	 	}
+
 		// register & inlcude Google maps
-		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=drawing', array(), '3', false );
+		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&key='.$key.'&sensor=false&libraries=drawing', array(), '3', false );
 		wp_enqueue_script('googlemaps-api');
 
 
