@@ -226,7 +226,7 @@ class acf_field_mapmore extends acf_field {
 		</script>
 		<div class="acf-field-mapmore-row">
 			<div class="acf-field-mapmore-content">
-				<div id="<?= $map_id ?>" style="width:100%;height:400px;"></div>
+				<div id="<?= $map_id ?>" style="<?php echo esc_attr('height: '.$field['height'].'px'); ?>"></div>
 			</div>
 		</div>
 		<?php
@@ -352,7 +352,7 @@ class acf_field_mapmore extends acf_field {
 	 	}
 
 		// register & inlcude Google maps
-		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&key='.$key.'&sensor=false&libraries=drawing', array(), '3', false );
+		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&key='.$key.'&libraries=drawing', array(), '3', false );
 		wp_enqueue_script('googlemaps-api');
 
 
