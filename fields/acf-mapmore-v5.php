@@ -270,6 +270,10 @@ class acf_field_mapmore extends acf_field {
 
 			</div>
 
+			<?php
+			if ( $icons_count != 0 ) :
+			?>
+
 			<div class="acf-field-mapmore-row">
 				<p style="text-align: center;">
 					<a class="button button-primary" id="mapmore-clear-marker">Clear Marker</a>
@@ -277,6 +281,7 @@ class acf_field_mapmore extends acf_field {
 			</div>
 
 			<?php
+			endif;
 
 		endif;
 
