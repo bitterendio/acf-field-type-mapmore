@@ -197,6 +197,37 @@
 			        }
 			    );
 
+				// clear map
+				google.maps.event.addDomListener(
+					document.getElementById('mapmore-clear-map'),
+					'click',
+					function (event) {
+
+						self.clearLocations();
+						self.storeLocations();
+
+						var $input = jQuery('input[name="' + self.settings.fieldname + '"]');
+
+						$input.val('');
+
+						self.locations = [];
+
+					}
+				);
+
+				// clear marker selection
+				google.maps.event.addDomListener(
+					document.getElementById('mapmore-clear-marker'),
+					'click',
+					function (event) {
+
+						$('[data-acf-field-mapmore-icon]').removeClass('active');
+
+						self.settings.defaultMarker = null;
+
+					}
+				);
+
 			},
 
 			setDrawingManager: function() {
