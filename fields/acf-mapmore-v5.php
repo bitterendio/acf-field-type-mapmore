@@ -226,7 +226,7 @@ class acf_field_mapmore extends acf_field {
 		</script>
 		<div class="acf-field-mapmore-row">
 			<div class="acf-field-mapmore-content">
-				<div id="<?= $map_id ?>" style="width:100%;height:400px;"></div>
+				<div id="<?= $map_id ?>" style="<?php echo esc_attr('height: '.$field['height'].'px'); ?>"></div>
 			</div>
 		</div>
 		<?php
