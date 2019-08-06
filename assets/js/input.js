@@ -506,9 +506,9 @@
     							animation: 	google.maps.Animation.DROP
 							};
 
-							if ( icon !== false ) {
+							if ( self.settings.defaultMarker !== null ) {
 
-								mapObjectConfig['icon'] = icon;
+								mapObjectConfig['icon'] = self.settings.defaultMarker;
 
 							}
 
