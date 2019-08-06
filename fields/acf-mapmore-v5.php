@@ -229,6 +229,12 @@ class acf_field_mapmore extends acf_field {
 				<div id="<?= $map_id ?>" style="<?php echo esc_attr('height: '.$field['height'].'px'); ?>"></div>
 			</div>
 		</div>
+		<div class="acf-field-mapmore-row">
+			<p style="text-align: center;">
+				<a class="button button-primary" id="mapmore-clear-map">Clear Map</a>
+				<a class="button button-primary" id="mapmore-clear-marker">Clear Marker</a>
+			</p>
+		</div>
 		<?php
 
 		/*
