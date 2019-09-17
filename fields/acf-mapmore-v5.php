@@ -363,7 +363,7 @@ class acf_field_mapmore extends acf_field {
 	 	}
 
 		// register & inlcude Google maps
-		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=3&key='.$key.'&libraries=drawing', array(), '3', false );
+		wp_register_script( 'googlemaps-api', '//maps.googleapis.com/maps/api/js?v=weekly&key='.$key.'&libraries=places,drawing', array(), null, false );
 		wp_enqueue_script('googlemaps-api');
 
 
