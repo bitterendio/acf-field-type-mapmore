@@ -183,7 +183,7 @@ class acf_field_mapmore extends acf_field {
 		?>
 
 		<div class="acf-hidden">
-			<input type="hidden" name="<?php echo $field_name ?>" value="<?php echo esc_attr( $field['value'] ); ?>">
+			<input type="hidden" name="<?php echo $field_name ?>" value="<?php echo esc_attr( json_encode( $field['value'] ) ); ?>">
 		</div>
 
 		<script type="text/javascript">
@@ -193,11 +193,9 @@ class acf_field_mapmore extends acf_field {
 
 			<?php if ( !empty($field['value']) ) : ?>
 
-				<?php $current_value = json_decode($field['value']); ?>
-
 				<?php if ( json_last_error() === JSON_ERROR_NONE ) : ?>
 
-					locations<?= $map_id_js ?> = <?= $field['value'] ?>;
+					locations<?= $map_id_js ?> = <?= json_encode( $field['value'] ) ?>;
 
 				<?php endif; ?>
 
