@@ -123,7 +123,7 @@
 
 				this.map = this.settings.map;
 				this.mapDiv = this.map.getDiv();
-				this.locations = JSON.parse(this.settings.locations);
+				this.locations = this.settings.locations;
 				this.mapObjects = [];
 
 				this.addEventListeners();

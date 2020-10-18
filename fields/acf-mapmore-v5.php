@@ -195,7 +195,7 @@ class acf_field_mapmore extends acf_field {
 
 				<?php if ( json_last_error() === JSON_ERROR_NONE ) : ?>
 
-					locations<?= $map_id_js ?> = <?= json_encode( $field['value'] ) ?>;
+					locations<?= $map_id_js ?> = JSON.parse(<?= json_encode( $field['value'] ) ?>);
 
 				<?php endif; ?>
 
