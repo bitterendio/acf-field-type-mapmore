@@ -130,6 +130,8 @@
 
 				this.setLocations();
 
+				this.fitBounds();
+
 				this.activateIconSelect();
 
 				if ( this.settings.drawingManager && this.settings.editable )
@@ -721,6 +723,38 @@
 
 				}
 
+			},
+
+			fitBounds: function () {
+				var bounds = new google.maps.LatLngBounds();
+				var hasBounds = false;
+
+				for ( var key in this.mapObjects ) {
+					var mapObject = this.mapObjects[key];
+					
+					if ( 
+						mapObject instanceof google.maps.Circle ||
+						mapObject instanceof google.maps.Rectangle
+					) {
+						bounds.union(mapObject.getBounds());
+						hasBounds = true;
+					}
+
+					if (mapObject instanceof google.maps.Polygon) {
+						mapObject.getPaths().forEach(function(path) {
+							path.forEach(function(latLng) {
+								bounds.extend(latLng);
+							});
+						});
+						hasBounds = true;
+					}
+
+				}
+
+				if (hasBounds) {
+					this.map.fitBounds(bounds);
+					this.map.setCenter(bounds.getCenter());
+				}
 			},
 
 			contextmenu: function(latLng, pixel) {
