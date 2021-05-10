@@ -120,7 +120,7 @@
 		// Avoid MapMore.prototype conflicts
 		$.extend( MapMore.prototype, {
 			init: function() {
-
+				
 				this.map = this.settings.map;
 				this.mapDiv = this.map.getDiv();
 				this.locations = this.settings.locations;

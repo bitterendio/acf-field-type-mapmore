@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: MapMore
 Plugin URI: https://bitterend.io
 Description: Map complex field for Advanced Custom Fields
-Version: 1.0.1
+Version: 1.1.0
 Author: bitterend
 Author URI: https://bitterend.io
 License: GPLv2 or later
