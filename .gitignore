@@ -15,5 +15,4 @@ Thumbs.db
 bin/
 composer.lock
 phpunit.xml.dist
-tests/
 vendor/
