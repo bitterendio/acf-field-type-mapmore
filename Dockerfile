@@ -25,9 +25,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
         && chmod ugo+x /usr/local/bin/composer \
         && echo "*** composer command installed"
 
-COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-
 # Create testing environment
 COPY --chmod=755 bin/install-wp-tests.sh /usr/local/bin/
 RUN echo "#!/bin/bash" > /usr/local/bin/install-wp-tests \

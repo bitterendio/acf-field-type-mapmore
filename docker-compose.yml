@@ -36,29 +36,6 @@ services:
     depends_on:
       - db
 
-  wordpress-cli:
-    depends_on:
-      - db
-      - wp
-    image: wordpress:cli
-    user: xfs
-    environment:
-      WORDPRESS_DB_HOST: acf-field-type-mapmore-db
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-wordpress}
-      WORDPRESS_DB_USER: ${MYSQL_USER:-wordpress}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-wordpress}
-      WP_CLI_PACKAGES_DIR: /tmp/wp-cli-packages
-      WORDPRESS_HOST: ${WORDPRESS_HOST:-localhost}
-      WORDPRESS_PORT: ${WORDPRESS_PORT:-8080}
-      WORDPRESS_ADMIN_USER: ${WORDPRESS_ADMIN_USER:-admin}
-      WORDPRESS_ADMIN_PASS: ${WORDPRESS_ADMIN_PASS:-pass}
-      WORDPRESS_CONFIG_EXTRA: |
-        define('WP_DEBUG_DISPLAY', true);
-        define('WP_DEBUG_LOG', true);
-        define('WP_REDIS_HOST', 'wp-custom-plugin-cache');
-    volumes_from:
-      - wp
-
 # Make network name pretty
 networks:
   default:

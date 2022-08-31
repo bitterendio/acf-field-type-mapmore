@@ -7,3 +7,13 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Test files #
+##############
+.phpcs.xml.dist
+.travis.yml
+bin/
+composer.lock
+phpunit.xml.dist
+tests/
+vendor/
