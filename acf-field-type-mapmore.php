@@ -20,5 +20,5 @@ add_action('plugins_loaded', function () {
 add_action('init', 'acf_field_type_mapmore', 1);
 
 function acf_field_type_mapmore() {
-	new AcfFieldTypeMapMore\AcfPluginMapMore();
+  new AcfFieldTypeMapMore\AcfPluginMapMore();
 }

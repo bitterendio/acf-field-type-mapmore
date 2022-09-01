@@ -21,11 +21,11 @@ Complex map field for Advanced Custom Fields.
 
   	switch ( $value['type'] ) {
 
-  		case 'rectangle': 
+  		case 'rectangle':
   		?>
-  		<script>	
+  		<script>
 	      	new google.maps.Rectangle({
-	      		bounds:     <?php echo $value['bounds'] ?>,
+	      		bounds:     <?php echo json_encode($value['bounds']) ?>,
 	      		map:        map
 	      	});
 		</script>
@@ -34,9 +34,9 @@ Complex map field for Advanced Custom Fields.
 
       	case 'polyline':
 		?>
-		<script>	
+		<script>
 	      	new google.maps.Polyline({
-	      		path:       <?php echo $value['path'] ?>],
+	      		path:       <?php echo json_encode($value['path']) ?>],
 	      		map:        map,
 	      	});
       	</script>
@@ -45,9 +45,9 @@ Complex map field for Advanced Custom Fields.
 
       	case 'polygon':
 		?>
-		<script>	
-	      	new google.maps.Polyligon({
-	      		path:       <?php echo $value['polygon'] ?>],
+		<script>
+	      	new google.maps.Polygon({
+	      		path:       <?php echo json_encode($value['path']) ?>],
 	      		map:        map
 	      	});
       	</script>
@@ -56,7 +56,7 @@ Complex map field for Advanced Custom Fields.
 
       	case 'circle':
 		?>
-		<script>	
+		<script>
 	      	new google.maps.Circle({
 	      		center:     {lat: <?php echo $value['lat'] ?>], lng: <?php echo $value['lng'] ?>},
 	      		radius:     <?php echo $value['radius'] ?>,
@@ -68,7 +68,7 @@ Complex map field for Advanced Custom Fields.
 
       	case 'marker':
 		?>
-		<script>	
+		<script>
 	      	new google.maps.Marker({
 	      		position:   {lat: <?php echo $value['lat'] ?>], lng: <?php echo $value['lng'] ?>},
 	      		map:        map,
@@ -140,7 +140,7 @@ composer run-script test:wordpress
 Using docker
 ```sh
 docker-compose run phpunit
-composer install 
+composer install
 composer:test:wordpress
 ```
 
