@@ -1,47 +1,22 @@
-# docker-compose.yml
-version: "3"
-
+# Docker-compose file for running integration tests
+version: "3.7"
 services:
-  # MySQL database
-  db:
-    image: mariadb
-    restart: unless-stopped
-    container_name: acf-field-type-mapmore-db
+  database:
+    container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-    volumes:
-      - db-data:/var/lib/mysql
+      MYSQL_ROOT_PASSWORD: examplepass
+    image: mysql:8.0
 
-  # Wordpress
-  wp:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    container_name: acf-field-type-mapmore-app
-    environment:
-      WORDPRESS_DB_HOST: acf-field-type-mapmore-db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DEBUG: 1
-    volumes:
-      - wp-data:/var/www/html
-      - ./:/var/www/html/wp-content/plugins/acf-field-type-mapmore
-    ports:
-      - 8080:80
+  phpunit:
+    command:
+      - bash
+    container_name: phpunit
     depends_on:
-      - db
-
-# Make network name pretty
-networks:
-  default:
-    name: acf-field-type-mapmore-network
-
-# Persist DB and WordPress data across containers
-volumes:
-  db-data:
-  wp-data:
+      - database
+    environment:
+      DATABASE_PASSWORD: examplepass
+    image: futureys/phpunit-wordpress-plugin
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/plugin

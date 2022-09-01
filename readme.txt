@@ -38,7 +38,10 @@ This ACF field type is compatible with:
 
 == Changelog ==
 
-= 1.0.1 = (8/2019)
+= 0.4.0 = (9/2022)
+* Testing environment
+
+= 0.3.1 = (8/2019)
 * Settings Google API key
 
 = 0.1.0 =

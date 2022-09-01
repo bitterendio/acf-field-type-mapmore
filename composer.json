@@ -1,14 +1,14 @@
 {
-  "name": "sanatorium/acf-field-type-mapmore",
+  "name": "rozklad/acf-field-type-mapmore",
   "type": "wordpress-plugin",
   "license": "MIT",
   "description": "Advanced Custom Fields - MapMore",
-  "homepage": "https://sanatorium.ninja",
+  "homepage": "https://rozklad.dev",
   "authors": [
     {
       "name": "rozklad",
       "email": "jan.rozklad@gmail.com",
-      "homepage": "https://rozklad.me"
+      "homepage": "https://rozklad.dev"
     },
     {
       "name": "mattluk",
@@ -20,12 +20,24 @@
     "acf"
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": "^7.2|^8.0",
     "composer/installers": "~1.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7",
-    "yoast/phpunit-polyfills": "^1.0"
+    "phpunit/phpunit": "^7|^8",
+    "yoast/phpunit-polyfills": "^1.0",
+    "mockery/mockery": "1.2",
+    "brain/monkey": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AcfFieldTypeMapMore\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AcfFieldTypeMapMore\\Tests\\": "./tests"
+    }
   },
   "config": {
     "allow-plugins": {
@@ -33,6 +45,7 @@
     }
   },
   "scripts": {
-    "phpunit": "phpunit"
+    "test": "phpunit --config=phpunit-unit.xml",
+    "test:wordpress": "phpunit --config=phpunit-integration.xml"
   }
 }

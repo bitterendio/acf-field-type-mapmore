@@ -1,0 +1,22 @@
+{
+  "name": "rozklad/acf-field-type-mapmore",
+  "version": "0.4.0",
+  "main": "index.js",
+  "author": "rozklad <jan.rozklad@gmail.com>",
+  "license": "GPL-2.0",
+  "private": true,
+  "workspaces": [
+    "pages",
+    "components"
+  ],
+  "wp-env": {
+    "plugin-dir": "acf-field-type-mapmore",
+    "plugin-name": "ACF Field Type MapMore",
+    "welcome-logo": [
+      "ACF field type map more"
+    ]
+  },
+  "dependencies": {
+    "@wordpress/env": "@latest"
+  }
+}
