@@ -13,7 +13,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 add_action('plugins_loaded', function () {
     if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-        include __DIR__ . '/vendor/autoload.php';
+      // Composer autoload
+      include __DIR__ . '/vendor/autoload.php';
+    } else {
+      // Manual autoload
+      include __DIR__ . '/src/AcfPluginMapMore.php';
     }
 });
 
