@@ -155,8 +155,5 @@ Please see `readme.txt` for changelog
 - Map Marker, Pin, thumb tack, Flag, Tree, forest, Flower, Sun, Crescent Moon, Tornado, Hail, Lightning, Day Fog, Bicycle, Car, Bus, Train, Hot Air Balloon, Departure, Airplane Mode, Tent, Image, Color, Shop, Hanging board by (Pham Thi Dieu Linh)[https://thenounproject.com/phdieuli/] from (the Noun Project)[https://thenounproject.com]
 
 
-## Sponsors
-
-This project is sponsored by Browserstack.
 
 
